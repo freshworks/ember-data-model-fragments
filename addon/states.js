@@ -167,7 +167,8 @@ export function fragmentDidDirty(record, key, fragment) {
   if (!record.currentState.isDeleted) {
     // Add the fragment as a placeholder in the owner record's
     // `_attributes` hash to indicate it is dirty
-    // FD-90808 Fix for Array fragment not getting dirty
+    // FD-90808 Fix for Array fragment not getting dirty.
+    // https://github.com/adopted-ember-addons/ember-data-model-fragments/issues/330
     record._internalModel._recordData._attributes[key] = fragment;
     record.send('becomeDirty');
   }
