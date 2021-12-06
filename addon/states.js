@@ -167,6 +167,7 @@ export function fragmentDidDirty(record, key, fragment) {
   if (!record.currentState.isDeleted) {
     // Add the fragment as a placeholder in the owner record's
     // `_attributes` hash to indicate it is dirty
+    // FD-90808 Fix for Array fragment not getting dirty
     record._internalModel._recordData._attributes[key] = fragment;
     record.send('becomeDirty');
   }
